@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj": {}
+    "c:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj": {
+    "c:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj",
+        "projectUniqueName": "c:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj",
         "projectName": "BankApp01",
-        "projectPath": "C:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj",
+        "projectPath": "c:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\BankApp01.csproj",
         "packagesPath": "C:\\Users\\mhdas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\obj\\",
+        "outputPath": "c:\\Users\\mhdas\\Desktop\\FinalPr\\BankApp\\BankApp01\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

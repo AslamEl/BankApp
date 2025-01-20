@@ -86,7 +86,7 @@ public class LinkedList
 
     //to display the name
 
-    public void Display_name()
+    public void Display()
     {
         if (head==null)
         {

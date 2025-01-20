@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 using BankApp01;
 
 LinkedList customer_list=new LinkedList();
@@ -13,6 +15,7 @@ while(true)
     Console.WriteLine("1. Add an account");
     Console.WriteLine("2. Display the accounts");
     Console.WriteLine("3. Delete an account");
+    Console.WriteLine("4. Exit");
     Console.WriteLine("Enter Your choice here:");
     string? choice=Console.ReadLine();
 
@@ -21,18 +24,21 @@ while(true)
 
 
         case "1":
+        while(true)
+
+        {
                 Console.WriteLine("Enter the customer Name:");
                 string? name=Console.ReadLine();
                 Console.WriteLine("Enter the Account Number:");
 
-                if(!int.TryParse(Console.ReadLine(),out int acc_num))
+                if(!long.TryParse(Console.ReadLine(),out long acc_num))
             {
                 Console.WriteLine("Invalid account Number.Try again");
                 continue;
             }
 
             Console.WriteLine("Enter the ID Number:");
-            if(!int.TryParse(Console.ReadLine(),out int id_num))
+            if(!long.TryParse(Console.ReadLine(),out long id_num))
         {
             Console.WriteLine("Invalid ID Number.Try again");
             continue;
@@ -41,8 +47,44 @@ while(true)
 
         customer_list.Add(name!,acc_num,id_num);
         Console.WriteLine("Customer added successfully to system");
+            Console.WriteLine("1.Previous Menu");
+            Console.WriteLine("2.Add another customer");
+            Console.WriteLine("3.Exit the system");
+
+            String? choice_1=Console.ReadLine();
+            switch (choice_1)
+            {
+                case "1":
+                    break;
+
+
+                case"2":
+                continue;
+
+                case "3":
+                Console.WriteLine("Successfully exit the system");
+                return;
+
+                default:
+                Console.WriteLine("Inavalid choice return to previous menu");
+                break;
+            }
+
+        
+        break;
+        }
+
 
         break;
+
+        case "2":
+        customer_list.Display();
+        break;
+        
+
+        case "4":
+        Console.WriteLine("Exit the system....");
+        return;
 
 
     }
