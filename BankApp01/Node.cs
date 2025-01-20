@@ -46,6 +46,44 @@ public class LinkedList
         }
     }
 
+
+    public bool Delete(int acc_num)
+    {
+        if (head==null)
+        {
+            Console.WriteLine("There is nothing to delete");
+            return false;
+        }
+        if(head.Acc_Number==acc_num)
+        {
+            head=head.Next;
+            Console.WriteLine($"Account {acc_num} deleted succesfully");
+            return true;
+        }
+
+        Node? current=head;
+        while (current.Next!=null && current.Acc_Number!=acc_num)
+        {
+            current=current.Next;
+        }
+
+        if(current.Next==null)
+        {
+            Console.WriteLine("The account number is not found");
+            return false;
+        }
+
+        current.Next=current.Next.Next;
+
+        Console.WriteLine($"Account {acc_num} deleted successfully");
+        return true;
+
+
+
+
+
+    }
+
     //to display the name
 
     public void Display_name()
