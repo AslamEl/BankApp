@@ -29,9 +29,17 @@ while(true)
         {
                 Console.WriteLine("Enter the customer Name:");
                 string? name=Console.ReadLine();
-                Console.WriteLine("Enter the Account Number:");
+                Console.WriteLine("Enter the 10 digts Account Number:");
 
-                if(!long.TryParse(Console.ReadLine(),out long acc_num))
+                string? accNmr=Console.ReadLine();
+                if(accNmr?.Length!=10)
+                {
+                    Console.WriteLine("Invalid number Enter 10 digits");
+                    continue;
+
+                }
+
+                if(!long.TryParse(accNmr,out long acc_num))
             {
                 Console.WriteLine("Invalid account Number.Try again");
                 continue;
@@ -79,13 +87,16 @@ while(true)
 
         case "3":
         Console.WriteLine("enter the account number to delete");
-        if(!int.TryParse(Console.ReadLine(),out int AccountToDelete))
+        
+       
+        if(!long.TryParse(Console.ReadLine(),out long AccDelete))
         {
             Console.WriteLine("Inavalid input please Enter valid number");
             continue;
 
         }
-        customer_list.Delete(AccountToDelete);
+        customer_list.Delete(AccDelete);
+
         break;
 
 

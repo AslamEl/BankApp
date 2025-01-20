@@ -47,7 +47,7 @@ public class LinkedList
     }
 
 
-    public bool Delete(int acc_num)
+    public bool Delete(long acc_num)
     {
         if (head==null)
         {
