@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using BankApp01;
 
-Console.WriteLine("Hello, World!");
-MyBankClass mynewclass= new MyBankClass();
+LinkedList customer_list=new LinkedList();
 
-Console.WriteLine(mynewclass.sum(5,7));
+customer_list.Add("Aslam",8001901043,200211303871);
+customer_list.Add("Haneepa",1023,2510478);
+//list_1.Ad("Maxwell");
+
+customer_list.Display_name();
