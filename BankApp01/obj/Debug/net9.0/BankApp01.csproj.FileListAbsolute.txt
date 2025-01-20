@@ -1,0 +1,15 @@
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\bin\Debug\net9.0\BankApp01.exe
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\bin\Debug\net9.0\BankApp01.deps.json
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\bin\Debug\net9.0\BankApp01.runtimeconfig.json
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\bin\Debug\net9.0\BankApp01.dll
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\bin\Debug\net9.0\BankApp01.pdb
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.AssemblyInfoInputs.cache
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.AssemblyInfo.cs
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.csproj.CoreCompileInputs.cache
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.sourcelink.json
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.dll
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\refint\BankApp01.dll
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.pdb
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\BankApp01.genruntimeconfig.cache
+C:\Users\mhdas\Desktop\FinalPr\BankApp\BankApp01\obj\Debug\net9.0\ref\BankApp01.dll
