@@ -77,6 +77,18 @@ while(true)
 
         break;
 
+        case "3":
+        Console.WriteLine("enter the account number to delete");
+        if(!int.TryParse(Console.ReadLine(),out int AccountToDelete))
+        {
+            Console.WriteLine("Inavalid input please Enter valid number");
+            continue;
+
+        }
+        customer_list.Delete(AccountToDelete);
+        break;
+
+
         case "2":
         customer_list.Display();
         break;
