@@ -14,8 +14,8 @@ while(true)
     Console.WriteLine("Options");
     Console.WriteLine("1. Add an account");
     Console.WriteLine("2. Display the accounts");
-    Console.WriteLine("3.Deposit");
-    Console.WriteLine("4.Withdrawl");
+    Console.WriteLine("3. Deposit");
+    Console.WriteLine("4. Withdrawl");
     Console.WriteLine("5. Delete an account");
     Console.WriteLine("6. Exit");
     Console.WriteLine("Enter Your choice here:");
@@ -31,44 +31,43 @@ while(true)
         {
                 Console.WriteLine("Enter the customer Name:");
                 string? name=Console.ReadLine();
+                long acc_num;
+                while(true)
+                {
                 Console.WriteLine("Enter the 10 digts Account Number:");
 
                 string? accNmr=Console.ReadLine();
-                while(true)
-                {
-                if(accNmr?.Length!=10)
-                {
-                    Console.WriteLine("Invalid number Enter 10 digits");
-                    continue;
-
-                }
-                break;
-                }
-
-                if(!long.TryParse(accNmr,out long acc_num))
-            {
-                Console.WriteLine("Invalid account Number.Try again");
-                continue;
-            }
             
 
-            Console.WriteLine("Enter the ID Number:");
-            if(!long.TryParse(Console.ReadLine(),out long id_num))
-        {
-            Console.WriteLine("Invalid ID Number.Try again");
-            continue;
+                if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=10)
+            {
+                Console.WriteLine("Invalid account Number.Account number must be 10 digits");
+                continue;
+            }
+            break;
 
-        }
+            }
+            
+        
+            Console.WriteLine("Enter the ID Number:");
+            string? id_num=Console.ReadLine();
+          
+        long f_deposit;
+        while(true)
+        {
         Console.WriteLine("Enter the First Deposit Amount:");
         string? accba=Console.ReadLine();
-        if(!long.TryParse(accba,out long acc_balance)||acc_balance<=500)
+        if(!long.TryParse(accba,out f_deposit)||f_deposit<=500)
         {
-            Console.WriteLine("Invalid amount try again");
+            Console.WriteLine("Invalid amount.The first deposit Amount must larger then 500");
             continue;
+        }
+        break;
+
         }
 
 
-        customer_list.Add(name!,acc_num,id_num,acc_balance);
+        customer_list.Add(name!,acc_num,id_num!,f_deposit);
         Console.WriteLine("Customer added successfully to system");
             Console.WriteLine("1.Previous Menu");
             Console.WriteLine("2.Add another customer");
@@ -104,9 +103,33 @@ while(true)
          case "2":
         customer_list.Display();
         break;
-        /*
+
         case "3":
-        Console.WriteLine("Enter the amount to Withdraw");*/
+
+        Console.WriteLine("Enter the account number to Deposit");
+        if(!long.TryParse(Console.ReadLine(),out long depositAccount))
+        {
+            Console.WriteLine("Invalid Account number");
+            break;
+        }
+        Console.WriteLine("Enter the Amount to Deposit");
+        if(!long.TryParse(Console.ReadLine(),out long depositAmount))
+        {
+            Console.WriteLine("Invalid deposit Amount");
+            break;
+        }
+
+        customer_list.Deposit(depositAccount,depositAmount);
+        break;
+
+
+
+
+
+
+
+
+
 
 
         case "5":

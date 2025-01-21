@@ -5,18 +5,21 @@ public class Node
 {
     public string? Name;
     public long Acc_Number;
-    public long Id_Number;
+    public string? Id_Number;
 
-    public long Acc_balance;
+    public decimal Acc_Balance;
+
+    public decimal F_deposit;
     
     
     public Node? Next;
-    public Node (string name,long acc_num,long id_num,long acc_balance)
+    public Node (string name,long acc_num,string id_num,decimal f_deposit)
     {
         Name=name;
         Acc_Number=acc_num;
         Id_Number=id_num;
-        Acc_balance=acc_balance;
+        F_deposit=f_deposit;
+        Acc_Balance=f_deposit;
         Next=null;
 
     }
@@ -28,10 +31,10 @@ public class LinkedList
 {
     private Node? head;
 
-    //to add the name in linkedlistname
-    public void Add(string name,long acc_num,long id_num,long acc_balance)
+    //to add the new customer to the system
+    public void Add(string name,long acc_num,string id_num,decimal f_deposit)
     {
-        Node newNode=new Node(name,acc_num,id_num,acc_balance);
+        Node newNode=new Node(name,acc_num,id_num,f_deposit);
 
         if (head==null)
         {
@@ -51,7 +54,7 @@ public class LinkedList
         }
     }
 
-
+    //delete an Account
     public bool Delete(long acc_num)
     {
         if (head==null)
@@ -88,8 +91,34 @@ public class LinkedList
 
 
     }
+    
+    //for deposit money
 
-    //to display the name
+    public void Deposit(long acc_num,decimal amount)
+    {
+        Node? current=head;
+
+
+        while(head!=null && current?.Acc_Number!=acc_num)
+        {
+            current=current?.Next;
+        }
+
+        if(head==null)
+        {
+            Console.WriteLine("Account not found");
+            return;
+        }
+
+        current!.Acc_Balance=current.Acc_Balance+amount;
+
+        Console.WriteLine($"Deposited {amount} to Account Number{acc_num},New Balance:{current.Acc_Balance}");
+
+
+    }
+
+
+    //to display the customer Details
 
     public void Display()
     {
@@ -102,11 +131,37 @@ public class LinkedList
 
         while(current!=null)
         {
-            Console.WriteLine($"Name:{current.Name},Account Number:{current.Acc_Number},ID Number:{current.Id_Number},Account Balance:{current.Acc_balance}");
+            
+            
+            Console.WriteLine($"Name:{current.Name},Account Number:{current.Acc_Number},ID Number:{current.Id_Number},Account Balance:{current.Acc_Balance}");
             current=current.Next;
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
