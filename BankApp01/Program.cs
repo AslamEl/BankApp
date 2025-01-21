@@ -14,8 +14,10 @@ while(true)
     Console.WriteLine("Options");
     Console.WriteLine("1. Add an account");
     Console.WriteLine("2. Display the accounts");
-    Console.WriteLine("3. Delete an account");
-    Console.WriteLine("4. Exit");
+    Console.WriteLine("3.Deposit");
+    Console.WriteLine("4.Withdrawl");
+    Console.WriteLine("5. Delete an account");
+    Console.WriteLine("6. Exit");
     Console.WriteLine("Enter Your choice here:");
     string? choice=Console.ReadLine();
 
@@ -32,11 +34,15 @@ while(true)
                 Console.WriteLine("Enter the 10 digts Account Number:");
 
                 string? accNmr=Console.ReadLine();
+                while(true)
+                {
                 if(accNmr?.Length!=10)
                 {
                     Console.WriteLine("Invalid number Enter 10 digits");
                     continue;
 
+                }
+                break;
                 }
 
                 if(!long.TryParse(accNmr,out long acc_num))
@@ -44,6 +50,7 @@ while(true)
                 Console.WriteLine("Invalid account Number.Try again");
                 continue;
             }
+            
 
             Console.WriteLine("Enter the ID Number:");
             if(!long.TryParse(Console.ReadLine(),out long id_num))
@@ -52,8 +59,16 @@ while(true)
             continue;
 
         }
+        Console.WriteLine("Enter the First Deposit Amount:");
+        string? accba=Console.ReadLine();
+        if(!long.TryParse(accba,out long acc_balance)||acc_balance<=500)
+        {
+            Console.WriteLine("Invalid amount try again");
+            continue;
+        }
 
-        customer_list.Add(name!,acc_num,id_num);
+
+        customer_list.Add(name!,acc_num,id_num,acc_balance);
         Console.WriteLine("Customer added successfully to system");
             Console.WriteLine("1.Previous Menu");
             Console.WriteLine("2.Add another customer");
@@ -85,7 +100,16 @@ while(true)
 
         break;
 
+
+         case "2":
+        customer_list.Display();
+        break;
+        /*
         case "3":
+        Console.WriteLine("Enter the amount to Withdraw");*/
+
+
+        case "5":
         Console.WriteLine("enter the account number to delete");
         
        
@@ -100,12 +124,10 @@ while(true)
         break;
 
 
-        case "2":
-        customer_list.Display();
-        break;
+       
         
 
-        case "4":
+        case "6":
         Console.WriteLine("Exit the system....");
         return;
 

@@ -6,12 +6,17 @@ public class Node
     public string? Name;
     public long Acc_Number;
     public long Id_Number;
+
+    public long Acc_balance;
+    
+    
     public Node? Next;
-    public Node (string name,long acc_num,long id_num)
+    public Node (string name,long acc_num,long id_num,long acc_balance)
     {
         Name=name;
         Acc_Number=acc_num;
         Id_Number=id_num;
+        Acc_balance=acc_balance;
         Next=null;
 
     }
@@ -24,9 +29,9 @@ public class LinkedList
     private Node? head;
 
     //to add the name in linkedlistname
-    public void Add(string name,long acc_num,long id_num)
+    public void Add(string name,long acc_num,long id_num,long acc_balance)
     {
-        Node newNode=new Node(name,acc_num,id_num);
+        Node newNode=new Node(name,acc_num,id_num,acc_balance);
 
         if (head==null)
         {
@@ -97,7 +102,7 @@ public class LinkedList
 
         while(current!=null)
         {
-            Console.WriteLine($"Name:{current.Name},Account Number:{current.Acc_Number},ID Number:{current.Id_Number}");
+            Console.WriteLine($"Name:{current.Name},Account Number:{current.Acc_Number},ID Number:{current.Id_Number},Account Balance:{current.Acc_balance}");
             current=current.Next;
         }
 
