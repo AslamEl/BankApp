@@ -70,8 +70,10 @@ public class LinkedList
         }
 
         Node? current=head;
-        while (current.Next!=null && current.Acc_Number!=acc_num)
+        
+        while (current.Next!=null && current.Next.Acc_Number!=acc_num)
         {
+           
             current=current.Next;
         }
 

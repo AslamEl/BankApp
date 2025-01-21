@@ -39,7 +39,7 @@ while(true)
                 string? accNmr=Console.ReadLine();
             
 
-                if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=10)
+                if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=2)
             {
                 Console.WriteLine("Invalid account Number.Account number must be 10 digits");
                 continue;
