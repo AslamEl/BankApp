@@ -122,13 +122,23 @@ while(true)
         customer_list.Deposit(depositAccount,depositAmount);
         break;
 
+        case "4":
 
+        Console.WriteLine("Enter the account number to withdraw");
+        if(!long.TryParse(Console.ReadLine(),out long withdrawAccount))
+        {
+            Console.WriteLine("Invalid Account number");
+            break;
+        }
+        Console.WriteLine("Enter the Amount to withdraw");
+        if(!long.TryParse(Console.ReadLine(),out long withdrawAmount))
+        {
+            Console.WriteLine("Invalid withdraw Amount");
+            break;
+        }
 
-
-
-
-
-
+        customer_list.Withdrawl(withdrawAccount,withdrawAmount);
+        break;
 
 
 

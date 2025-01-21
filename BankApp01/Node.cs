@@ -117,6 +117,28 @@ public class LinkedList
 
     }
 
+    public void Withdrawl(long acc_num,decimal amount)
+    {
+        Node? current=head;
+        while(head!=null && current?.Acc_Number!=acc_num)
+        {
+            current=current?.Next;
+        }
+        if(head==null)
+        {
+            Console.WriteLine("Account not found");
+            return;
+        }
+
+        current!.Acc_Balance=current.Acc_Balance-amount;
+
+        Console.WriteLine($" {amount} withdraw from Account Number{acc_num},New Balance:{current.Acc_Balance}");
+
+
+
+
+    }
+
 
     //to display the customer Details
 
