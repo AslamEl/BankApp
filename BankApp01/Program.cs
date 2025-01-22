@@ -26,6 +26,9 @@ while(true)
 
 
         case "1":
+        Console.WriteLine("==============================");
+        Console.WriteLine(" WELCOME TO CREATE AN ACCOUNT ");
+        Console.WriteLine("==============================");
         while(true)
 
         {
@@ -34,7 +37,7 @@ while(true)
                 long acc_num;
                 while(true)
                 {
-                Console.WriteLine("Enter the 10 digts Account Number:");
+                Console.WriteLine("Enter the 6 digts Account Number:");
 
                 string? accNmr=Console.ReadLine();
             
@@ -67,9 +70,9 @@ while(true)
         {
         Console.WriteLine("Enter the First Deposit Amount:");
         string? accba=Console.ReadLine();
-        if(!long.TryParse(accba,out f_deposit)||f_deposit<=500)
+        if(!long.TryParse(accba,out f_deposit)||f_deposit<500)
         {
-            Console.WriteLine("Invalid amount.The first deposit Amount must larger then 500");
+            Console.WriteLine("Invalid amount.The first deposit Amount must larger then or equal to Rs.500");
             continue;
         }
         break;
@@ -115,17 +118,24 @@ while(true)
         break;
 
         case "3":
-
+        
+        Console.WriteLine("=========================");
+        Console.WriteLine(" WELCOME TO DEPOSIT PAGE ");
+        Console.WriteLine("=========================");
+        long depositAccount;
+        while(true){
         Console.WriteLine("Enter the account number to Deposit");
-        if(!long.TryParse(Console.ReadLine(),out long depositAccount))
+        if(!long.TryParse(Console.ReadLine(),out depositAccount))
         {
             Console.WriteLine("Invalid Account number");
-            break;
+            continue;
         }
         if(!customer_list.AccountExists(depositAccount))
         {
             Console.WriteLine($"Your account {depositAccount} number is wrong.Please check and Try Again");
-            break;
+            continue;
+        }
+        break;
         }
         
         Console.WriteLine("Enter the Amount to Deposit");
@@ -139,24 +149,38 @@ while(true)
         break;
 
         case "4":
+        Console.WriteLine("==========================");
+        Console.WriteLine(" WELCOME TO WITHDRAWL PAGE ");
+        Console.WriteLine("==========================");
+        long withdrawAccount;
+       
 
+        while(true)
+        {
         Console.WriteLine("Enter the account number to withdraw");
-        if(!long.TryParse(Console.ReadLine(),out long withdrawAccount))
+
+        if(!long.TryParse(Console.ReadLine(),out withdrawAccount))
         {
             Console.WriteLine("Invalid Account number");
-            break;
+            continue;
         }
+        
+        
          if(!customer_list.AccountExists(withdrawAccount))
         {
             Console.WriteLine($"Your account {withdrawAccount} number is wrong.Please check and Try Again");
-            break;
+            continue;
         }
+        break;
+        }
+        
         Console.WriteLine("Enter the Amount to withdraw");
-        if(!long.TryParse(Console.ReadLine(),out long withdrawAmount))
+        if(!long.TryParse(Console.ReadLine(),out long  withdrawAmount))
         {
             Console.WriteLine("Invalid withdraw Amount");
             break;
         }
+        
        
 
         customer_list.Withdrawl(withdrawAccount,withdrawAmount);
@@ -165,14 +189,22 @@ while(true)
 
 
         case "5":
+        long AccDelete;
+        Console.WriteLine("=========================");
+        Console.WriteLine(" WELCOME TO DELETE PAGE ");
+        Console.WriteLine("=========================");
+        while(true)
+        {
         Console.WriteLine("enter the account number to delete");
         
        
-        if(!long.TryParse(Console.ReadLine(),out long AccDelete))
+        if(!long.TryParse(Console.ReadLine(),out AccDelete))
         {
             Console.WriteLine("Inavalid input please Enter valid number");
             continue;
 
+        }
+        break;
         }
         customer_list.Delete(AccDelete);
 
@@ -183,7 +215,7 @@ while(true)
         
 
         case "6":
-        Console.WriteLine("Exit the system....");
+        Console.WriteLine("Exit the system.Have a good day");
         return;
 
 

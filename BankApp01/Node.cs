@@ -35,6 +35,9 @@ public class LinkedList
     //to add the new customer to the system
     public void Add(string name,long acc_num,string id_num,decimal f_deposit)
     {
+
+        
+
         Node newNode=new Node(name,acc_num,id_num,f_deposit);
 
         
@@ -77,6 +80,7 @@ public class LinkedList
     //delete an Account
     public bool Delete(long acc_num)
     {
+        
         if (head==null)
         {
             Console.WriteLine("There is nothing to delete");
@@ -143,6 +147,7 @@ public class LinkedList
 
     public void Withdrawl(long acc_num,decimal amount)
     {
+        
         Node? current=head;
         while(head!=null && current?.Acc_Number!=acc_num)
         {
@@ -155,18 +160,18 @@ public class LinkedList
         }
         if(current!.Acc_Balance<amount)
         {
-            Console.WriteLine("Account balance is too low");
+            Console.WriteLine("Insufficient Balance.");
             return;
         }
         if(current.Acc_Balance-amount<500)
         {
-            Console.WriteLine("Account Balance is too law.Minimum  balance Rs.500 ");
+            Console.WriteLine("Insufficient Balance.Minimum  balance Rs.500.");
             return;
         }
 
         current!.Acc_Balance=current.Acc_Balance-amount;
 
-        Console.WriteLine($" {amount} withdraw from Account Number{acc_num},New Balance:{current.Acc_Balance}");
+        Console.WriteLine($" {amount} withdraw from Account Number {acc_num},New Balance:{current.Acc_Balance}");
 
     }
 
@@ -175,6 +180,9 @@ public class LinkedList
 
     public void Display()
     {
+        Console.WriteLine("=========================");
+        Console.WriteLine(" WELCOME TO DISPLAY PAGE ");
+        Console.WriteLine("=========================");
         if(head==null)
         {
             Console.WriteLine("There is nothing to display");
