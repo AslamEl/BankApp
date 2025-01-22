@@ -30,11 +30,19 @@ public class Node
 public class LinkedList
 {
     private Node? head;
+    private BinarySearchTree bst= new BinarySearchTree();
 
     //to add the new customer to the system
     public void Add(string name,long acc_num,string id_num,decimal f_deposit)
     {
         Node newNode=new Node(name,acc_num,id_num,f_deposit);
+
+        
+        if(AccountExists(acc_num))
+        {
+            Console.WriteLine($"The {acc_num} already exists.Try agin");
+            return;
+        }
 
         if (head==null)
         {
@@ -52,7 +60,23 @@ public class LinkedList
             current.Next=newNode;
 
         }
+
+        bst.Insert(newNode);
     }
+
+    public bool AccountExists(long acc_num)
+    {
+        Node? current=head;
+
+        while(current!=null)
+        {
+            if(current.Acc_Number==acc_num) return true;
+            current=current.Next;
+        }
+        return false;
+    }
+
+
 
     //delete an Account
     public bool Delete(long acc_num)
@@ -65,6 +89,7 @@ public class LinkedList
         if(head.Acc_Number==acc_num)
         {
             head=head.Next;
+            bst.Delete(acc_num);
             Console.WriteLine($"Account {acc_num} deleted succesfully");
             return true;
         }
@@ -84,6 +109,7 @@ public class LinkedList
         }
 
         current.Next=current.Next.Next;
+        bst.Delete(acc_num);
 
         Console.WriteLine($"Account {acc_num} deleted successfully");
         return true;
@@ -141,56 +167,21 @@ public class LinkedList
 
     }
 
-
-    //to display the customer Details
+    //dispaly the accounts
 
     public void Display()
     {
-        if (head==null)
+        if(head==null)
         {
-            Console.WriteLine("Empty");
+            Console.WriteLine("There is nothing to display");
             return;
         }
-        Node? current=head;
-
-        while(current!=null)
-        {
-            
-            
-            Console.WriteLine($"Name:{current.Name},Account Number:{current.Acc_Number},ID Number:{current.Id_Number},Account Balance:{current.Acc_Balance}");
-            current=current.Next;
-        }
-
+        bst.DisplayAccounts();
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
 
 }
-
-
-
 
 }

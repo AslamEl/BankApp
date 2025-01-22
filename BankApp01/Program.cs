@@ -44,6 +44,16 @@ while(true)
                 Console.WriteLine("Invalid account Number.Account number must be 10 digits");
                 continue;
             }
+            
+            
+            if(customer_list.AccountExists(acc_num))
+            {
+            Console.WriteLine($"The {acc_num} already exists.Try agin");
+            
+            
+            continue;
+            }
+
             break;
 
             }
