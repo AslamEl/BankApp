@@ -122,6 +122,12 @@ while(true)
             Console.WriteLine("Invalid Account number");
             break;
         }
+        if(!customer_list.AccountExists(depositAccount))
+        {
+            Console.WriteLine($"Your account {depositAccount} number is wrong.Please check and Try Again");
+            break;
+        }
+        
         Console.WriteLine("Enter the Amount to Deposit");
         if(!long.TryParse(Console.ReadLine(),out long depositAmount))
         {
@@ -140,12 +146,18 @@ while(true)
             Console.WriteLine("Invalid Account number");
             break;
         }
+         if(!customer_list.AccountExists(withdrawAccount))
+        {
+            Console.WriteLine($"Your account {withdrawAccount} number is wrong.Please check and Try Again");
+            break;
+        }
         Console.WriteLine("Enter the Amount to withdraw");
         if(!long.TryParse(Console.ReadLine(),out long withdrawAmount))
         {
             Console.WriteLine("Invalid withdraw Amount");
             break;
         }
+       
 
         customer_list.Withdrawl(withdrawAccount,withdrawAmount);
         break;

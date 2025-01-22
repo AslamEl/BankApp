@@ -38,11 +38,6 @@ public class LinkedList
         Node newNode=new Node(name,acc_num,id_num,f_deposit);
 
         
-        if(AccountExists(acc_num))
-        {
-            Console.WriteLine($"The {acc_num} already exists.Try agin");
-            return;
-        }
 
         if (head==null)
         {
@@ -75,6 +70,7 @@ public class LinkedList
         }
         return false;
     }
+    
 
 
 
@@ -127,12 +123,12 @@ public class LinkedList
         Node? current=head;
 
 
-        while(head!=null && current?.Acc_Number!=acc_num)
+        while(current!=null && current?.Acc_Number!=acc_num)
         {
             current=current?.Next;
         }
 
-        if(head==null)
+        if(current==null)
         {
             Console.WriteLine("Account not found");
             return;
@@ -140,7 +136,7 @@ public class LinkedList
 
         current!.Acc_Balance=current.Acc_Balance+amount;
 
-        Console.WriteLine($"Deposited {amount} to Account Number{acc_num},New Balance:{current.Acc_Balance}");
+        Console.WriteLine($"Deposited {amount} to Account Number {acc_num},New Balance:{current.Acc_Balance}");
 
 
     }
@@ -157,16 +153,24 @@ public class LinkedList
             Console.WriteLine("Account not found");
             return;
         }
+        if(current!.Acc_Balance<amount)
+        {
+            Console.WriteLine("Account balance is too low");
+            return;
+        }
+        if(current.Acc_Balance-amount<500)
+        {
+            Console.WriteLine("Account Balance is too law.Minimum  balance Rs.500 ");
+            return;
+        }
 
         current!.Acc_Balance=current.Acc_Balance-amount;
 
         Console.WriteLine($" {amount} withdraw from Account Number{acc_num},New Balance:{current.Acc_Balance}");
 
-
-
-
     }
 
+   
     //dispaly the accounts
 
     public void Display()
