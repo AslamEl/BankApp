@@ -149,8 +149,58 @@ public class LinkedList
 
     }
 
+    //Merge sort by Account number  Group Member 01
+
+     public Node MergeSort(Node head)
+    {
+        if (head == null || head.Next == null)
+            return head!;
+
+        // Step 1: Split the list into two halves
+        Node middle = MiddleNumber(head);
+        Node nextOfMiddle = middle.Next!;
+        middle.Next = null;
+
+        // Step 2: Recursively sort both halves
+        Node left = MergeSort(head);
+        Node right = MergeSort(nextOfMiddle);
+
+        // Step 3: Merge the sorted halves
+        return Merge(left, right);
+    }
+     private Node Merge(Node left, Node right)
+    {
+        if (left == null) return right;
+        if (right == null) return left;
+
+        Node result;
+        if (left.Acc_Number<= right.Acc_Number)
+        {
+            result = left;
+            result.Next = Merge(left.Next!, right);
+        }
+        else
+        {
+            result = right;
+            result.Next = Merge(left, right.Next!);
+        }
+        return result;
+    }
+    private Node MiddleNumber(Node head)
+    {
+        if (head == null) return head!;
+
+        Node slow = head, fast = head.Next!;
+        while (fast != null && fast.Next != null)
+        {
+            slow = slow.Next!;
+            fast = fast.Next.Next!;
+        }
+        return slow;
+    }
+
    
-    //dispaly the accounts
+    //Dispaly the accounts
 
     public void Display()
     {
@@ -163,7 +213,11 @@ public class LinkedList
             return;
         }
 
+        head=MergeSort(head);
+
         Node current= head;
+
+        
 
         while(current!=null)
         {

@@ -44,7 +44,7 @@ while(true)
 
                 if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=2)
             {
-                Console.WriteLine("Invalid account Number.Account number must be 10 digits");
+                Console.WriteLine("Invalid account Number.Account number must be 6 digits");
                 continue;
             }
             
@@ -123,7 +123,8 @@ while(true)
         Console.WriteLine(" WELCOME TO DEPOSIT PAGE ");
         Console.WriteLine("=========================");
         long depositAccount;
-        while(true){
+        while(true)
+        {
         Console.WriteLine("Enter the account number to Deposit");
         if(!long.TryParse(Console.ReadLine(),out depositAccount))
         {
