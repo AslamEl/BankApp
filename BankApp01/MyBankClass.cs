@@ -1,143 +1,181 @@
-﻿using System;
-
-namespace BankApp01
+﻿namespace BankApp01
 {
 
-
-    public class TreeNode
+public class LinkedList
+{
+    private Node? head;
     
+
+    //to add the new customer to the system
+    public void Add(string name,long acc_num,string id_num,decimal f_deposit)
     {
-        public Node? Account;
 
-        public TreeNode? Left;
-        public TreeNode? Right;
+        
 
+        Node newNode=new Node(name,acc_num,id_num,f_deposit);
 
+        
 
-        public TreeNode(Node account)
+        if (head==null)
         {
-            Account=account;
-            Left=null;
-            Right=null;
-
-
+            head=newNode;
         }
-
-    }
-
-public class BinarySearchTree
-{
-
-    private TreeNode? root;
-
-
-    public void Insert(Node account)
-    {
-        TreeNode newNode= new TreeNode(account);
-
-        if(root==null)
-        {
-            root=newNode;
-        }
-
         else
         {
-            InsertRecu(root,newNode);
+            Node? current =head;
+            while(current.Next!=null)
+        
+            {
+                current=current.Next;
+
+            }
+            current.Next=newNode;
+
         }
+
+       
     }
 
-    public void InsertRecu(TreeNode root,TreeNode newNode)
+    public bool AccountExists(long acc_num)
     {
+        Node? current=head;
 
-        if(newNode?.Account?.Acc_Number<root?.Account?.Acc_Number)
+        while(current!=null)
         {
-            if(root.Left==null)
-            {
-            root.Left=newNode;
-            }
-            else
-            {
-                InsertRecu(root.Left,newNode);
-            }
+            if(current.Acc_Number==acc_num) return true;
+            current=current.Next;
         }
+        return false;
+    }
+    
 
-        else
+
+
+    //delete an Account
+    public bool Delete(long acc_num)
+    {
+        
+        if (head==null)
         {
-            if(root?.Right==null)
-            {
-            root!.Right=newNode;
-            }
-            else
-            {
-                InsertRecu(root.Right,newNode!);
-            }
-
+            Console.WriteLine("There is nothing to delete");
+            return false;
         }
-
-
-
-
-    }
-
-
-    public void InorderTravesel(TreeNode node)
-
-    {
-        if(node!=null)
+        if(head.Acc_Number==acc_num)
         {
-            InorderTravesel(node.Left!);
-          
-            Console.WriteLine($"Name: {node.Account!.Name}, Account Number: {node.Account.Acc_Number}, ID Number: {node.Account.Id_Number}, Account Balance: {node.Account.Acc_Balance}");
-             InorderTravesel(node.Right!);
+            head=head.Next;
+           
+            Console.WriteLine($"Account {acc_num} deleted succesfully");
+            return true;
         }
-    }
 
-    public void DisplayAccounts()
+        Node? current=head;
+        
+        while (current.Next!=null && current.Next.Acc_Number!=acc_num)
+        {
+           
+            current=current.Next;
+        }
+
+        if(current.Next==null)
+        {
+            Console.WriteLine("The account number is not found");
+            return false;
+        }
+
+        current.Next=current.Next.Next;
+       
+
+        Console.WriteLine($"Account {acc_num} deleted successfully");
+        return true;
+
+
+
+
+
+    }
+    
+    //for deposit money
+
+    public void Deposit(long acc_num,decimal amount)
     {
-        InorderTravesel(root!);
+        Node? current=head;
+
+
+        while(current!=null && current?.Acc_Number!=acc_num)
+        {
+            current=current?.Next;
+        }
+
+        if(current==null)
+        {
+            Console.WriteLine("Account not found");
+            return;
+        }
+
+        current!.Acc_Balance=current.Acc_Balance+amount;
+
+        Console.WriteLine($"Deposited {amount} to Account Number {acc_num},New Balance:{current.Acc_Balance}");
+
+
     }
 
-
-
-    public TreeNode? DeleteRec(TreeNode? root, long acc_num)
-{
-    if (root == null) return root;
-
-    if (acc_num < root.Account!.Acc_Number)
-        root.Left = DeleteRec(root.Left, acc_num);
-    else if (acc_num > root.Account.Acc_Number)
-        root.Right = DeleteRec(root.Right, acc_num);
-    else
+    public void Withdrawl(long acc_num,decimal amount)
     {
-        if (root.Left == null)
-            return root.Right;
-        else if (root.Right == null)
-            return root.Left;
+        
+        Node? current=head;
+        while(head!=null && current?.Acc_Number!=acc_num)
+        {
+            current=current?.Next;
+        }
+        if(head==null)
+        {
+            Console.WriteLine("Account not found");
+            return;
+        }
+        if(current!.Acc_Balance<amount)
+        {
+            Console.WriteLine("Insufficient Balance.");
+            return;
+        }
+        if(current.Acc_Balance-amount<500)
+        {
+            Console.WriteLine("Insufficient Balance.Minimum  balance Rs.500.");
+            return;
+        }
 
-        root.Account = MinValue(root.Right);
-        root.Right = DeleteRec(root.Right, root.Account.Acc_Number);
+        current!.Acc_Balance=current.Acc_Balance-amount;
+
+        Console.WriteLine($" {amount} withdraw from Account Number {acc_num},New Balance:{current.Acc_Balance}");
+
     }
 
-    return root;
-}
+   
+    //dispaly the accounts
 
-private Node MinValue(TreeNode node)
-{
-    Node minv = node.Account!;
-    while (node.Left != null)
+    public void Display()
     {
-        minv = node.Left.Account!;
-        node = node.Left;
+        Console.WriteLine("=========================");
+        Console.WriteLine(" WELCOME TO DISPLAY PAGE ");
+        Console.WriteLine("=========================");
+        if(head==null)
+        {
+            Console.WriteLine("There is nothing to display");
+            return;
+        }
+
+        Node current= head;
+
+        while(current!=null)
+        {
+            Console.WriteLine("Name: "+current.Name+"\tAccount Number: "+current.Acc_Number+"\tID Number: "+current.Id_Number+"\tBalance: "+current.Acc_Balance);
+            current=current.Next!;
+        }
+       
     }
-    return minv;
-}
-
-public void Delete(long acc_num)
-{
-    root=DeleteRec(root,acc_num);
-}
 
 
+   
 
 }
+
 }
