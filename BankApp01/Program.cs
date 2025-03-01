@@ -12,7 +12,7 @@ while(true)
 {
 
     Console.WriteLine("Options");
-    Console.WriteLine("1. Add an account");
+    Console.WriteLine("1. Create an account");
     Console.WriteLine("2. Display the accounts");
     Console.WriteLine("3. Deposit");
     Console.WriteLine("4. Withdrawl");
@@ -83,7 +83,7 @@ while(true)
         customer_list.Add(name!,acc_num,id_num!,f_deposit);
         Console.WriteLine("Customer added successfully to system");
             Console.WriteLine("1.Previous Menu");
-            Console.WriteLine("2.Add another customer");
+            Console.WriteLine("2.Create another Account");
             Console.WriteLine("3.Exit the system");
 
             String? choice_1=Console.ReadLine();
@@ -190,26 +190,56 @@ while(true)
 
 
         case "5":
-        long AccDelete;
-        Console.WriteLine("=========================");
-        Console.WriteLine(" WELCOME TO DELETE PAGE ");
-        Console.WriteLine("=========================");
-        while(true)
-        {
-        Console.WriteLine("enter the account number to delete");
-        
-       
-        if(!long.TryParse(Console.ReadLine(),out AccDelete))
-        {
-            Console.WriteLine("Inavalid input please Enter valid number");
-            continue;
+            long AccDelete;
+             Console.WriteLine("=========================");
+            Console.WriteLine(" WELCOME TO DELETE PAGE ");
+             Console.WriteLine("=========================");
 
-        }
-        break;
-        }
-        customer_list.Delete(AccDelete);
+             while (true)
+             {
+             Console.WriteLine("Enter the account number to delete:");
 
-        break;
+             if (!long.TryParse(Console.ReadLine(), out AccDelete))
+             {
+            Console.WriteLine("Invalid input! Please enter a valid number.");
+            break;
+             }
+
+           
+           customer_list.Delete(AccDelete);
+            
+
+            while (true)
+            {
+           
+            Console.WriteLine("1. Delete another account");
+            Console.WriteLine("2. Go back to the previous menu");
+            Console.WriteLine("3. Exit");
+
+            string choice2 = Console.ReadLine()!;
+
+            if (choice2 == "1")
+            {
+                break; 
+            }
+            else if (choice2 == "2")
+            {
+                goto MainMenu; 
+            }
+            else if (choice2 == "3")
+            {
+                Console.WriteLine("Exiting program... Goodbye!");
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice! Please select 1, 2, or 3.");
+            }
+            }
+    }
+
+            MainMenu: 
+            break;
 
 
        

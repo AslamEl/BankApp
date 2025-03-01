@@ -156,16 +156,16 @@ public class LinkedList
         if (head == null || head.Next == null)
             return head!;
 
-        // Step 1: Split the list into two halves
+      
         Node middle = MiddleNumber(head);
         Node nextOfMiddle = middle.Next!;
         middle.Next = null;
 
-        // Step 2: Recursively sort both halves
+        
         Node left = MergeSort(head);
         Node right = MergeSort(nextOfMiddle);
 
-        // Step 3: Merge the sorted halves
+       
         return Merge(left, right);
     }
      private Node Merge(Node left, Node right)
@@ -198,6 +198,76 @@ public class LinkedList
         }
         return slow;
     }
+    // Bubble sort by Account Number Group Member 02
+    public void BubbleSort()
+    {
+    if (head == null || head.Next == null)
+        return;
+
+    bool swapped;
+    Node current;
+    Node lastSorted= null!; 
+
+    do
+    {
+        swapped = false;
+        current = head;
+
+        while (current.Next != lastSorted)
+        {
+            if (current.Acc_Number > current.Next!.Acc_Number)
+            {
+                
+                long tempAcc = current.Acc_Number;
+                current.Acc_Number = current.Next.Acc_Number;
+                current.Next.Acc_Number = tempAcc;
+
+                swapped = true;
+            }
+            current = current.Next!;
+        }
+        lastSorted = current; 
+    } while (swapped);
+    }
+    //Insertion Sort by Account Number Group Member 03
+    public void InsertionSort()
+    {
+    if (head == null || head.Next == null)
+        return;
+
+    Node sorted = null!; 
+    Node current = head; 
+
+    while (current != null)
+    {
+        Node next = current.Next!; 
+        sorted = SortedInsert(sorted, current); 
+        current = next; 
+    }
+
+    head = sorted; 
+    }
+
+
+    private Node SortedInsert(Node sorted, Node newNode)
+    {
+    if (sorted == null || sorted.Acc_Number >= newNode.Acc_Number)
+    {
+        newNode.Next = sorted;
+        return newNode;
+    }
+
+    Node current = sorted;
+    while (current.Next != null && current.Next.Acc_Number < newNode.Acc_Number)
+    {
+        current = current.Next;
+    }
+
+    newNode.Next = current.Next;
+    current.Next = newNode;
+
+    return sorted;
+    }
 
    
     //Dispaly the accounts
@@ -213,7 +283,10 @@ public class LinkedList
             return;
         }
 
-        head=MergeSort(head);
+        //BubbleSort();
+        InsertionSort();
+
+        //head=MergeSort(head);
 
         Node current= head;
 
