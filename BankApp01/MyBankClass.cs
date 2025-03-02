@@ -135,6 +135,7 @@ public class LinkedList
         if(current!.Acc_Balance<amount)
         {
             Console.WriteLine("Insufficient Balance.");
+            Console.WriteLine("Withdrawl unsucessfull");
             return;
         }
         if(current.Acc_Balance-amount<500)
@@ -146,6 +147,7 @@ public class LinkedList
         current!.Acc_Balance=current.Acc_Balance-amount;
 
         Console.WriteLine($" {amount} withdraw from Account Number {acc_num},New Balance:{current.Acc_Balance}");
+        Console.WriteLine("Withdrawl successfull");
 
     }
 

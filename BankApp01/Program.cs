@@ -4,14 +4,16 @@ using System.Xml.Serialization;
 using BankApp01;
 
 LinkedList customer_list=new LinkedList();
-
-Console.WriteLine("Bank Managment system");
-Console.WriteLine("======================");
+Console.WriteLine("\t\t\t\t\t\t======================================");
+Console.WriteLine("\t\t\t\t\t\t\tBANK MANAGEMENT SYSTEM");
+Console.WriteLine("\t\t\t\t\t\t======================================");
 
 while(true)
 {
 
-    Console.WriteLine("Options");
+    Console.WriteLine("\n=====================");
+    Console.WriteLine("      MAIN MENU      ");
+    Console.WriteLine("=====================\n");
     Console.WriteLine("1. Create an account");
     Console.WriteLine("2. Display the accounts");
     Console.WriteLine("3. Deposit");
@@ -26,221 +28,319 @@ while(true)
 
 
         case "1":
-        Console.WriteLine("==============================");
-        Console.WriteLine(" WELCOME TO CREATE AN ACCOUNT ");
-        Console.WriteLine("==============================");
-        while(true)
-
-        {
-                Console.WriteLine("Enter the customer Name:");
-                string? name=Console.ReadLine();
-                long acc_num;
                 while(true)
                 {
-                Console.WriteLine("Enter the 6 digts Account Number:");
-
-                string? accNmr=Console.ReadLine();
-            
-
-                if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=2)
-            {
-                Console.WriteLine("Invalid account Number.Account number must be 6 digits");
-                continue;
-            }
-            
-            
-            if(customer_list.AccountExists(acc_num))
-            {
-            Console.WriteLine($"The {acc_num} already exists.Try agin");
-            
-            
-            continue;
-            }
-
-            break;
-
-            }
-            
-        
-            Console.WriteLine("Enter the ID Number:");
-            string? id_num=Console.ReadLine();
-          
-        long f_deposit;
-        while(true)
-        {
-        Console.WriteLine("Enter the First Deposit Amount:");
-        string? accba=Console.ReadLine();
-        if(!long.TryParse(accba,out f_deposit)||f_deposit<500)
-        {
-            Console.WriteLine("Invalid amount.The first deposit Amount must larger then or equal to Rs.500");
-            continue;
-        }
-        break;
-
-        }
 
 
-        customer_list.Add(name!,acc_num,id_num!,f_deposit);
-        Console.WriteLine("Customer added successfully to system");
-            Console.WriteLine("1.Previous Menu");
-            Console.WriteLine("2.Create another Account");
-            Console.WriteLine("3.Exit the system");
+                Console.WriteLine("==================================");
+                Console.WriteLine("   WELCOME TO CREATE AN ACCOUNT   ");
+                Console.WriteLine("==================================");
+                
 
-            String? choice_1=Console.ReadLine();
-            switch (choice_1)
-            {
-                case "1":
+                
+                        Console.WriteLine("Enter the customer Name:");
+                        string? name=Console.ReadLine();
+                        long acc_num;
+                        while(true)
+                        {
+                        Console.WriteLine("Enter the 6 digts Account Number:");
+
+                        string? accNmr=Console.ReadLine();
+                    
+
+                        if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=2)
+                    {
+                        Console.WriteLine("Invalid account Number.Account number must be 6 digits");
+                        continue;
+                    }
+                    
+                    
+                    if(customer_list.AccountExists(acc_num))
+                    {
+                    Console.WriteLine($"The {acc_num} already exists.Try agin");
+                    
+                    
+                    continue;
+                    }
+
                     break;
 
-
-                case"2":
-                continue;
-
-                case "3":
-                Console.WriteLine("Successfully exit the system");
-                return;
-
-                default:
-                Console.WriteLine("Inavalid choice return to previous menu");
+                    }
+                    
+                
+                    Console.WriteLine("Enter the ID Number:");
+                    string? id_num=Console.ReadLine();
+                
+                long f_deposit;
+                while(true)
+                {
+                Console.WriteLine("Enter the First Deposit Amount:");
+                string? accba=Console.ReadLine();
+                if(!long.TryParse(accba,out f_deposit)||f_deposit<500)
+                {
+                    Console.WriteLine("Invalid amount.The first deposit Amount must larger then or equal to Rs.500");
+                    continue;
+                }
                 break;
-            }
 
+                }
+                
+
+
+                customer_list.Add(name!,acc_num,id_num!,f_deposit);
+                Console.WriteLine("Customer added successfully to system");
+                
+                while(true)
+                {
+                    Console.WriteLine("\nWhat would you like to do next?");
+                    Console.WriteLine("1. Create another Account");
+                    Console.WriteLine("2. Return to Main Menu");
+                    Console.WriteLine("3. Exit the system");
+                    Console.Write("Select an option: ");
+
+                    String? choice_1=Console.ReadLine();
+                    switch (choice_1)
+                    {
+                        case "1":
+                        Console.Clear();
+                        break;
+
+
+                        case"2":
+                        Console.WriteLine("Returning to Main Menu...");
+                        goto MainMenu;
+
+                        case "3":
+                        Console.WriteLine("Successfully exit the system");
+                        return;
+
+                        default:
+                        Console.WriteLine("Inavalid choice return to previous menu");
+                        break;
+                    }
+                    break;
+                }
+
+                
         
-        break;
-        }
+
+                }
+                MainMenu:
+                break;
+            
+    
 
 
-        break;
+                
 
 
-         case "2":
-        customer_list.Display();
-        break;
+        case "2":
+            customer_list.Display();
+            break;
+
+
+
 
         case "3":
-        
-        Console.WriteLine("=========================");
-        Console.WriteLine(" WELCOME TO DEPOSIT PAGE ");
-        Console.WriteLine("=========================");
-        long depositAccount;
-        while(true)
-        {
-        Console.WriteLine("Enter the account number to Deposit");
-        if(!long.TryParse(Console.ReadLine(),out depositAccount))
-        {
-            Console.WriteLine("Invalid Account number");
-            continue;
-        }
-        if(!customer_list.AccountExists(depositAccount))
-        {
-            Console.WriteLine($"Your account {depositAccount} number is wrong.Please check and Try Again");
-            continue;
-        }
-        break;
-        }
-        
-        Console.WriteLine("Enter the Amount to Deposit");
-        if(!long.TryParse(Console.ReadLine(),out long depositAmount))
-        {
-            Console.WriteLine("Invalid deposit Amount");
-            break;
-        }
+            while (true) // Deposit Menu
+            {
+                Console.WriteLine("===============================");
+                Console.WriteLine("    WELCOME TO DEPOSIT PAGE    ");
+                Console.WriteLine("===============================");
 
-        customer_list.Deposit(depositAccount,depositAmount);
-        break;
+                long depositAccount;
+                while (true)
+                {
+                    Console.WriteLine("Enter the account number to deposit:");
+                    if (!long.TryParse(Console.ReadLine(), out depositAccount))
+                    {
+                        Console.WriteLine("Invalid account number.");
+                        continue;
+                    }
+                    if (!customer_list.AccountExists(depositAccount))
+                    {
+                        Console.WriteLine($"Account {depositAccount} does not exist. Please check and try again.");
+                        continue;
+                    }
+                    break;
+                }
+
+                Console.WriteLine("Enter the Amount to Deposit:");
+                if (!long.TryParse(Console.ReadLine(), out long depositAmount) || depositAmount <= 0)
+                {
+                    Console.WriteLine("Invalid deposit amount.");
+                    continue;
+                }
+
+                customer_list.Deposit(depositAccount, depositAmount);
+                Console.WriteLine("Deposit Successful!");
+
+                while (true) 
+                {
+                    Console.WriteLine("\nWhat would you like to do next?");
+                    Console.WriteLine("1. Deposit to Another Account");
+                    Console.WriteLine("2. Return to Main Menu");
+                    Console.WriteLine("3. Exit");
+                    Console.Write("Select an option: ");
+
+                    string? choice_a = Console.ReadLine() ?? "";
+
+                    switch (choice_a)
+                    {
+                        case "1":
+                            Console.Clear();
+                            break; 
+                        case "2":
+                            Console.WriteLine("Returning to Main Menu...");
+                            goto MainMenu; 
+                        case "3":
+                            Console.WriteLine("Exiting...");
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice. Please select a valid option.");
+                            continue; 
+                    }
+                    break; 
+                }
+            }
+             
+
+                
+        
 
         case "4":
-        Console.WriteLine("==========================");
-        Console.WriteLine(" WELCOME TO WITHDRAWL PAGE ");
-        Console.WriteLine("==========================");
-        long withdrawAccount;
-       
+            while(true)
+            {
 
-        while(true)
-        {
-        Console.WriteLine("Enter the account number to withdraw");
+                Console.WriteLine("=================================");
+                Console.WriteLine("   WELCOME TO WITHDRAWAL PAGE   ");
+                Console.WriteLine("=================================");
+                long withdrawAccount;
 
-        if(!long.TryParse(Console.ReadLine(),out withdrawAccount))
-        {
-            Console.WriteLine("Invalid Account number");
-            continue;
-        }
-        
-        
-         if(!customer_list.AccountExists(withdrawAccount))
-        {
-            Console.WriteLine($"Your account {withdrawAccount} number is wrong.Please check and Try Again");
-            continue;
-        }
-        break;
-        }
-        
-        Console.WriteLine("Enter the Amount to withdraw");
-        if(!long.TryParse(Console.ReadLine(),out long  withdrawAmount))
-        {
-            Console.WriteLine("Invalid withdraw Amount");
-            break;
-        }
-        
-       
+                while(true)
+                {
+                    Console.WriteLine("Enter the account number to withdraw");
 
-        customer_list.Withdrawl(withdrawAccount,withdrawAmount);
-        break;
+                    if(!long.TryParse(Console.ReadLine(),out withdrawAccount))
+                    {
+                        Console.WriteLine("Invalid Account number");
+                        continue;
+                    }
 
+                    if(!customer_list.AccountExists(withdrawAccount))
+                    {
+                        Console.WriteLine($"Your account {withdrawAccount} number is wrong. Please check and try again.");
+                        continue;
+                    }
+                    break;
+                }
+
+                Console.WriteLine("Enter the Amount to withdraw");
+                if(!long.TryParse(Console.ReadLine(),out long withdrawAmount) || withdrawAmount <= 0)
+                {
+                    Console.WriteLine("Invalid withdraw Amount");
+                    break;
+                }
+
+                customer_list.Withdrawl(withdrawAccount, withdrawAmount);
+               
+
+                while (true) 
+                {
+                    Console.WriteLine("\nWhat would you like to do next?");
+                    Console.WriteLine("1. Withdraw from Another Account");
+                    Console.WriteLine("2. Return to Main Menu");
+                    Console.WriteLine("3. Exit");
+                    Console.Write("Select an option: ");
+
+                    string? choice4 = Console.ReadLine() ?? "";
+
+                    switch (choice4)
+                    {
+                        case "1":
+                            Console.Clear();
+                            break; 
+
+                        case "2":
+                            Console.WriteLine("Returning to Main Menu...");
+                            goto MainMenu; 
+
+                        case "3":
+                            Console.WriteLine("Exiting...");
+                            Environment.Exit(0);
+                            break; 
+
+                        default:
+                            Console.WriteLine("Invalid choice. Please select a valid option.");
+                            continue; 
+                    }
+
+                    break;
+                }
+                
+            }
+             break;
+                
+            
 
 
         case "5":
-            long AccDelete;
-             Console.WriteLine("=========================");
-            Console.WriteLine(" WELCOME TO DELETE PAGE ");
-             Console.WriteLine("=========================");
-
-             while (true)
-             {
-             Console.WriteLine("Enter the account number to delete:");
-
-             if (!long.TryParse(Console.ReadLine(), out AccDelete))
-             {
-            Console.WriteLine("Invalid input! Please enter a valid number.");
-            break;
-             }
-
-           
-           customer_list.Delete(AccDelete);
+           while(true)
+           {
+             Console.WriteLine("=============================");
+             Console.WriteLine("   WELCOME TO DELETE PAGE    ");
+             Console.WriteLine("=============================");
             
 
-            while (true)
-            {
-           
-            Console.WriteLine("1. Delete another account");
-            Console.WriteLine("2. Go back to the previous menu");
-            Console.WriteLine("3. Exit");
+            
+                Console.WriteLine("Enter the account number to delete:");
 
-            string choice2 = Console.ReadLine()!;
+                if (!long.TryParse(Console.ReadLine(), out long AccDelete))
+                {
+                Console.WriteLine("Invalid input! Please enter a valid number.");
+                break;
+                }
 
-            if (choice2 == "1")
-            {
-                break; 
-            }
-            else if (choice2 == "2")
-            {
-                goto MainMenu; 
-            }
-            else if (choice2 == "3")
-            {
-                Console.WriteLine("Exiting program... Goodbye!");
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice! Please select 1, 2, or 3.");
-            }
-            }
-    }
+            
+                 customer_list.Delete(AccDelete);
+                
 
-            MainMenu: 
-            break;
+                 while (true)
+                {
+                    Console.WriteLine("\nWhat would you like to do next?");
+                    Console.WriteLine("1. Delete another account");
+                    Console.WriteLine("2. Return to Main Menu");
+                    Console.WriteLine("3. Exit");
+                    Console.Write("Select an option: ");
 
+                    string? choice2 = Console.ReadLine();
+
+                    switch (choice2)
+                    {
+                        case "1":
+                            Console.Clear();
+                            break; 
+
+                        case "2":
+                            Console.WriteLine("Returning to Main Menu...");
+                            goto MainMenu; 
+
+                        case "3":
+                            Console.WriteLine("Exiting program... Goodbye!");
+                            Environment.Exit(0); 
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid choice! Please select 1, 2, or 3.");
+                            break; 
+                    }
+                    break;
+                }
+            }
+            
+
+            break; 
 
        
         
@@ -248,6 +348,10 @@ while(true)
         case "6":
         Console.WriteLine("Exit the system.Have a good day");
         return;
+
+        default:
+            Console.WriteLine("Invalid choice. Please enter a number from 1 to 6.");
+            break;
 
 
     }
