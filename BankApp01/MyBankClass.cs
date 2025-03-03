@@ -10,11 +10,7 @@ public class LinkedList
     public void Add(string name,long acc_num,string id_num,decimal f_deposit)
     {
 
-        
-
         Node newNode=new Node(name,acc_num,id_num,f_deposit);
-
-        
 
         if (head==null)
         {
@@ -35,7 +31,7 @@ public class LinkedList
 
        
     }
-
+    //Search Accounts
     public bool AccountExists(long acc_num)
     {
         Node? current=head;
@@ -46,6 +42,56 @@ public class LinkedList
             current=current.Next;
         }
         return false;
+    }
+    //For tranfer money
+
+    public bool TransferMoney(long fromAcc, long toAcc, decimal amount)
+    {
+        Node? sender=head;
+
+        while(sender!=null &&sender.Acc_Number!=fromAcc)
+        {
+            sender=sender.Next;
+        }
+
+         Node? reciever=head;
+        while(reciever!=null &&reciever.Acc_Number!=toAcc)
+        {
+           reciever=reciever.Next;
+        }
+
+        if(sender==null)
+        {
+            Console.WriteLine("Senders Account number not found.Transfer failed.");
+            return false;
+        }
+        if(reciever==null)
+        {
+            Console.WriteLine("Reciever Account number not found.Transfer failed.");
+            return false;
+        }
+        if(sender.Acc_Balance<amount)
+        {
+            Console.WriteLine("Insufficient balance to transfer.Transfer failed.");
+            return false;
+        }
+        if(sender.Acc_Balance-amount<500)
+        {
+            Console.WriteLine("Minimum balance of Rs.500 required. Transfer failed.");
+            return false;
+        }
+
+
+        sender.Acc_Balance-=amount;
+        reciever.Acc_Balance+=amount;
+
+        Console.WriteLine($"Successfully transferred Rs.{amount} from Account Number {fromAcc} to Account Number {toAcc}");
+        Console.WriteLine($"New Balance of Account Number {fromAcc}: Rs.{sender.Acc_Balance}");
+        Console.WriteLine($"New Balance of Account Number {toAcc}: Rs.{reciever.Acc_Balance}");
+
+         return true;
+
+
     }
     
 
@@ -88,10 +134,6 @@ public class LinkedList
         Console.WriteLine($"Account {acc_num} deleted successfully");
         return true;
 
-
-
-
-
     }
     
     //for deposit money
@@ -114,10 +156,12 @@ public class LinkedList
 
         current!.Acc_Balance=current.Acc_Balance+amount;
 
-        Console.WriteLine($"Deposited {amount} to Account Number {acc_num},New Balance:{current.Acc_Balance}");
+        Console.WriteLine($"Deposited Rs.{amount} to Account Number {acc_num},New Balance: Rs.{current.Acc_Balance}");
 
 
     }
+
+    //For withdrawl money
 
     public void Withdrawl(long acc_num,decimal amount)
     {
@@ -140,13 +184,13 @@ public class LinkedList
         }
         if(current.Acc_Balance-amount<500)
         {
-            Console.WriteLine("Insufficient Balance.Minimum  balance Rs.500.");
+            Console.WriteLine("Insufficient Balance.Minimum  balance should be Rs.500.");
             return;
         }
 
         current!.Acc_Balance=current.Acc_Balance-amount;
 
-        Console.WriteLine($" {amount} withdraw from Account Number {acc_num},New Balance:{current.Acc_Balance}");
+        Console.WriteLine($"Rs.{amount} withdraw from Account Number {acc_num},New Balance: Rs.{current.Acc_Balance}");
         Console.WriteLine("Withdrawl successfull");
 
     }
@@ -200,6 +244,8 @@ public class LinkedList
         }
         return slow;
     }
+
+
     // Bubble sort by Account Number Group Member 02
     public void BubbleSort()
     {
@@ -231,6 +277,8 @@ public class LinkedList
         lastSorted = current; 
     } while (swapped);
     }
+
+    
     //Insertion Sort by Account Number Group Member 03
     public void InsertionSort()
     {
@@ -296,7 +344,7 @@ public class LinkedList
 
         while(current!=null)
         {
-            Console.WriteLine("Name: "+current.Name+"\tAccount Number: "+current.Acc_Number+"\tID Number: "+current.Id_Number+"\tBalance: "+current.Acc_Balance);
+            Console.WriteLine($"Name: {current.Name}\tAccount Number: {current.Acc_Number}\tID Number: {current.Id_Number}\tBalance: Rs.{current.Acc_Balance}");
             current=current.Next!;
         }
        

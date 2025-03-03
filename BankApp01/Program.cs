@@ -19,7 +19,8 @@ while(true)
     Console.WriteLine("3. Deposit");
     Console.WriteLine("4. Withdrawl");
     Console.WriteLine("5. Delete an account");
-    Console.WriteLine("6. Exit");
+    Console.WriteLine("6. Tranfer Money To Another Account");
+    Console.WriteLine("7. Exit");
     Console.WriteLine("Enter Your choice here:");
     string? choice=Console.ReadLine();
 
@@ -48,7 +49,7 @@ while(true)
                         string? accNmr=Console.ReadLine();
                     
 
-                        if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=2)
+                        if(!long.TryParse(accNmr,out acc_num)||accNmr.Length!=6)
                     {
                         Console.WriteLine("Invalid account Number.Account number must be 6 digits");
                         continue;
@@ -204,6 +205,7 @@ while(true)
                     break; 
                 }
             }
+            
              
 
                 
@@ -337,17 +339,80 @@ while(true)
                     }
                     break;
                 }
+
+                
+
             }
             
 
             break; 
 
        
-        
-
         case "6":
-        Console.WriteLine("Exit the system.Have a good day");
-        return;
+
+            while(true)
+            {
+                Console.WriteLine("=============================");
+                Console.WriteLine("   WELCOME TO TRANSFER PAGE   ");
+                Console.WriteLine("=============================");
+
+                Console.Write("Enter sender account number: ");
+                long fromAcc = long.Parse(Console.ReadLine()!);
+
+                Console.Write("Enter receiver account number: ");
+                long toAcc = long.Parse(Console.ReadLine()!);
+
+                Console.Write("Enter amount to transfer: ");
+                decimal amount = decimal.Parse(Console.ReadLine()!);
+
+
+                customer_list.TransferMoney(fromAcc,toAcc,amount);
+
+                while(true)
+                {   
+                    Console.WriteLine("\nWhat would you like to do next?");
+                    Console.WriteLine("1. Transfer to another account");
+                    Console.WriteLine("2. Return to Main Menu");
+                    Console.WriteLine("3. Exit");
+                    Console.Write("Select an option: ");
+
+                     string? choice6 = Console.ReadLine();
+
+                     switch (choice6)
+                    {
+                        case "1":
+                            Console.Clear();
+                            break; 
+
+                        case "2":
+                            Console.WriteLine("Returning to Main Menu...");
+                            goto MainMenu; 
+
+                        case "3":
+                            Console.WriteLine("Exiting program... Goodbye!");
+                            Environment.Exit(0); 
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid choice! Please select 1, 2, or 3.");
+                            break; 
+                    }
+                    break;
+
+
+
+                }
+                
+            }
+            
+            
+            
+
+
+
+        case "7":
+            Console.WriteLine("Exit the system.Have a good day");
+            return;
 
         default:
             Console.WriteLine("Invalid choice. Please enter a number from 1 to 6.");
