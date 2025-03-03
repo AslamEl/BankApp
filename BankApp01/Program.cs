@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Runtime.CompilerServices;
+
 using System.Xml.Serialization;
 using BankApp01;
+using System.Diagnostics;
 
 LinkedList customer_list=new LinkedList();
 Console.WriteLine("\t\t\t\t\t\t======================================");
@@ -68,9 +70,23 @@ while(true)
 
                     }
                     
-                
+                    
+                string? id_num;
+                while(true)
+                {
                     Console.WriteLine("Enter the ID Number:");
-                    string? id_num=Console.ReadLine();
+                    id_num=Console.ReadLine();
+                    
+                    if(customer_list.Id_Exists(id_num))
+                    {
+                    Console.WriteLine($"The {id_num} already exists.Try agin");
+                    
+                    
+                    continue;
+                    }
+                    break;
+                }
+                    
                 
                 long f_deposit;
                 while(true)

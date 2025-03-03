@@ -1,4 +1,6 @@
-﻿namespace BankApp01
+﻿using System;
+using System.Diagnostics;
+namespace BankApp01
 {
 
 public class LinkedList
@@ -39,6 +41,17 @@ public class LinkedList
         while(current!=null)
         {
             if(current.Acc_Number==acc_num) return true;
+            current=current.Next;
+        }
+        return false;
+    }
+    public bool Id_Exists(string? id_num)
+    {
+        Node? current=head;
+
+        while(current!=null)
+        {
+            if(current.Id_Number==id_num) return true;
             current=current.Next;
         }
         return false;
@@ -278,7 +291,7 @@ public class LinkedList
     } while (swapped);
     }
 
-    
+
     //Insertion Sort by Account Number Group Member 03
     public void InsertionSort()
     {
@@ -324,6 +337,7 @@ public class LinkedList
 
     public void Display()
     {
+         
         Console.WriteLine("=========================");
         Console.WriteLine(" WELCOME TO DISPLAY PAGE ");
         Console.WriteLine("=========================");
@@ -332,11 +346,25 @@ public class LinkedList
             Console.WriteLine("There is nothing to display");
             return;
         }
+        Stopwatch stopwatch = new Stopwatch();
 
-        //BubbleSort();
-        InsertionSort();
+          /* stopwatch.Start();
+            BubbleSort();
+            stopwatch.Stop();
+            Console.WriteLine($"Bubble Sort Execution Time: {stopwatch.ElapsedMilliseconds} ms");*/
+        
+          
+            /*stopwatch.Start();
+            InsertionSort();
+            stopwatch.Stop();
+            Console.WriteLine($"Insertion Sort Execution Time: {stopwatch.ElapsedMilliseconds} ms");*/
+         
 
-        //head=MergeSort(head);
+            stopwatch.Start();
+            head = MergeSort(head);
+            stopwatch.Stop();
+            Console.WriteLine($"Merge Sort Execution Time: {stopwatch.ElapsedMilliseconds} ms");
+
 
         Node current= head;
 
@@ -344,7 +372,7 @@ public class LinkedList
 
         while(current!=null)
         {
-            Console.WriteLine($"Name: {current.Name}\tAccount Number: {current.Acc_Number}\tID Number: {current.Id_Number}\tBalance: Rs.{current.Acc_Balance}");
+            Console.WriteLine($"Name: {current.Name}\t\tAccount Number: {current.Acc_Number}\t\tID Number: {current.Id_Number}\t\tBalance: Rs.{current.Acc_Balance}");
             current=current.Next!;
         }
        
