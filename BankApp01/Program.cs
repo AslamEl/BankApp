@@ -159,7 +159,7 @@ while(true)
 
 
         case "3":
-            while (true) // Deposit Menu
+            while (true) 
             {
                 Console.WriteLine("===============================");
                 Console.WriteLine("    WELCOME TO DEPOSIT PAGE    ");
